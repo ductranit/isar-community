@@ -226,7 +226,7 @@ extension on Abi {
       case Abi.linuxArm64:
         return 'libisar.aarch64.so';
       case Abi.linuxX64:
-        return 'libisar.x64.so';
+        return 'libisar.so';
       case Abi.windowsArm64:
       case Abi.windowsX64:
         return 'libisar.dll';
