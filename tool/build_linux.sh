@@ -10,7 +10,7 @@ if [ "$1" = "x64" ]; then
   rustup run $RUST_TOOLCHAIN rustc --version
   rustup run $RUST_TOOLCHAIN cargo --version
   rustup run $RUST_TOOLCHAIN cargo build --target x86_64-unknown-linux-gnu --release
-  mv "target/x86_64-unknown-linux-gnu/release/libisar.so" "libisar_linux_x64.so"
+  cp --remove-destination "target/x86_64-unknown-linux-gnu/release/libisar.so" "libisar_linux_x64.so"
 else
   RUST_TOOLCHAIN="1.88.0-aarch64-unknown-linux-gnu"
   echo "Building for Linux arm64 with fixed Rust 1.88.0"
@@ -18,5 +18,5 @@ else
   rustup run $RUST_TOOLCHAIN rustc --version
   rustup run $RUST_TOOLCHAIN cargo --version
   rustup run $RUST_TOOLCHAIN cargo build --target aarch64-unknown-linux-gnu --release
-  mv "target/aarch64-unknown-linux-gnu/release/libisar.so" "libisar_linux_arm64.so"
+  cp --remove-destination "target/aarch64-unknown-linux-gnu/release/libisar.so" "libisar_linux_arm64.so"
 fi
