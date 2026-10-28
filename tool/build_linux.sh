@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 # Set the specific toolchain
 RUST_TOOLCHAIN="1.88.0-x86_64-unknown-linux-gnu"
@@ -10,8 +9,9 @@ if [ "$1" = "x64" ]; then
   rustup run $RUST_TOOLCHAIN rustc --version
   rustup run $RUST_TOOLCHAIN cargo --version
   rustup run $RUST_TOOLCHAIN cargo build --target x86_64-unknown-linux-gnu --release
-  cp --remove-destination "target/x86_64-unknown-linux-gnu/release/libisar.so" "libisar_linux_x64.so"
+  mv "target/x86_64-unknown-linux-gnu/release/libisar.so" "libisar_linux_x64.so"
 else
+  set -e
   RUST_TOOLCHAIN="1.88.0-aarch64-unknown-linux-gnu"
   echo "Building for Linux arm64 with fixed Rust 1.88.0"
   rustup target add aarch64-unknown-linux-gnu --toolchain $RUST_TOOLCHAIN
